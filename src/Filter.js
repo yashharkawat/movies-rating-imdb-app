@@ -9,10 +9,10 @@ const Filter=(props)=>{
         props.year(year);
     }
     return (
-        <>
-        <input type='number' placeholder='filter by year' onChange={changeHandler}/>
-        <button onClick={clickHandler}>Apply Filter</button>
-        </>
+        <div>
+            <input type='number' placeholder='filter by year' onChange={changeHandler}/>
+            <button onClick={clickHandler}>Apply Filter</button>
+        </div>
     );
 }
 export default Filter;

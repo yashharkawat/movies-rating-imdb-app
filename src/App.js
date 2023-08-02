@@ -4,7 +4,6 @@ import {
 import React from 'react';
 import ListView from './ListView';
 import MoviesDetails from './MoviesDetails';
-import Likes from './Likes'
 import './App.css'
 import LikesPage from "./LikesPage";
 
@@ -16,10 +15,6 @@ const router=createBrowserRouter([
 {
   path:'/:id',
   element:<MoviesDetails />
-},
-{
-  path:'/likes/:id',
-  element:<Likes />
 },
 {
   path:'/likes-page',

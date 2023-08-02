@@ -1,0 +1,61 @@
+.container{
+    display: flex;
+    width:1200px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.movies{
+    width:180px;
+    height:290px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+    margin-left: 40px;
+}
+.movie_poster{
+    width: 180px;
+    height:230px;
+}
+.movie_description{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.movie_like{
+    width:20px;
+    height: auto;
+    color:blue;
+    cursor: pointer;
+}
+.movie_name{
+    width:80%;
+}
+@media only screen and (min-width:1200px) {
+    .container{
+        width:100%;
+    }
+}
+
+.previous, .next{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.previous img, .next img{
+    width:50px;
+    height: 50px;
+    
+}
+.previous_next_page{
+    display: flex;
+    justify-content: space-between;
+}
+.filter_likes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.movie_like.like{
+    background-color: red;
+}

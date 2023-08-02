@@ -2,13 +2,16 @@ import { useEffect ,useState} from "react";
 import Movie from "./Movie";
 import Search from "./Search";
 import Filter from "./Filter";
+import {Link} from 'react-router-dom';
+import './ListView.css'
+
 
 const ListView=()=>{
     
     const [movies,setMovies]=useState([]);
     const [page,setPage]=useState(1);
     const [searchText,setSearchText]=useState('avengers');
-    const [loading,setLoading]=useState(true);
+    const [loading,setLoading]=useState(false);
     const [filterYear,setFilterYear]=useState(0);
     const [filter,setFilter]=useState(false);
 
@@ -59,7 +62,7 @@ const ListView=()=>{
     }
 
     const filterYearHandler=(year)=>{
-        console.log(movies);
+        //console.log(movies);
         setFilterYear(year);
         if(year>0) setFilter(true);
         else setFilter(false);
@@ -72,17 +75,69 @@ const ListView=()=>{
         
         return (
             <>
-            {filterMovies.map(item=><Movie image={item.Poster} title={item.Title} id={item.imdbID}/>) }
+            {filterMovies.map(item=><Movie image={item.Poster} title={item.Title} id={item.imdbID} liked={likeHandler} like={item.like?true:false} />) }
             </>
         );
     }
+    const DisplayMovies=()=>{
+        return (
+            <div className='container'>
+                {movies.map(item=><Movie image={item.Poster} title={item.Title} id={item.imdbID} liked={likeHandler} like={item.like?true:false} />) }
+            </div>
+        );
+    }
+    const prevPageHandler=()=>{
+        if(page>1) setPage(page-1);
+    }
+    const PrevNextPage=()=>{
+        return (
+            <div class="previous_next_page">
+                <div class="previous" onClick={prevPageHandler}>
+                    <img src="previous.png"/>
+                    <div>Previous Page</div>
+                </div>
+                <div class="next" onClick={nextPageHandler}>
+                    <div>Next Page</div>
+                    <img src="next.png" />
+                </div>
+            </div>
+        );
+    }
+    const Likes=()=>{
+        return (
+            <Link to='likes-page'><button>Liked movies</button></Link>
+        );
+    }
+    const likeHandler=(isLiked,id)=>{
+        console.log(isLiked,id);
+        for(let key in localStorage){
+            
+            let value=JSON.parse(localStorage.getItem(key));
+            if(Array.isArray(value)){
+                value.forEach(item=>{
+                    if(item.imdbID===id){
+                        item.like=isLiked;
+                    }
+                })
+                localStorage.setItem(key,JSON.stringify(value));
+            }
+        }
+    }
+    const loadingHandler=(isLoading)=>{
+        setLoading(isLoading);
+    }
 
     return <>
-        <Filter year={filterYearHandler}/>
+        
         <Search moviesSearch={moviesSearchHandler} page={page}/>
-        {!filter && movies.map(item=><Movie image={item.Poster} title={item.Title} id={item.imdbID}/>)  }
+        <div className="filter_likes"> 
+            <Filter year={filterYearHandler}/>
+            {!loading && <Likes />}
+        </div>
+        {!filter &&  <DisplayMovies />}
         {filter && <ApplyFilter />}
-        <button onClick={nextPageHandler}>Next Page</button>
+        <PrevNextPage />
+        
     </>
 }
 export default ListView;

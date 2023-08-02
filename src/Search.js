@@ -1,9 +1,9 @@
 import './Search.css'
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 const Search=(props)=>{
 
     const [searchText,setSearchText]=useState('');
-    
+
     const changeHandler=(e)=>{
         setSearchText(e.target.value);
     } 
