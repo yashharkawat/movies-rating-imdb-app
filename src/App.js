@@ -2,19 +2,19 @@ import {
   createBrowserRouter,RouterProvider
 } from "react-router-dom";
 import React from 'react';
-import ListView from './ListView';
-import MoviesDetails from './MoviesDetails';
+import MoviesEdit from './MoviesEdit';
 import './App.css'
 import LikesPage from "./LikesPage";
+import Display from "./Display";
 
 const router=createBrowserRouter([
 {
   path:'/',
-  element:<ListView />,
+  element:<Display />,
 },
 {
   path:'/:id',
-  element:<MoviesDetails />
+  element:<MoviesEdit />
 },
 {
   path:'/likes-page',
@@ -23,7 +23,6 @@ const router=createBrowserRouter([
 ])
 
 function App() {
-  
   return (
     <React.StrictMode>
       <RouterProvider router={router}/>

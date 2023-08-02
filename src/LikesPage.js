@@ -3,13 +3,9 @@ import {useEffect, useState} from 'react';
 import {Link } from 'react-router-dom';
 
 const LikesPage=()=>{
-    
     const [movies,setMovies]=useState([]);
-    
-
     useEffect(()=>{
         if('likedMovies' in localStorage) setMovies(JSON.parse(localStorage.getItem('likedMovies')));
-       // console.log('hii');
     },[])
     
     return (

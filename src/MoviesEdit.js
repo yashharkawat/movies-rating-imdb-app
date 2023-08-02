@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {Link} from 'react-router-dom';
 
-const MoviesDetails=()=>{
+const MoviesEdit=()=>{
 
     const params=useParams();
     const [movieDescription,setMovieDescription]=useState([]);
@@ -61,4 +61,4 @@ const MoviesDetails=()=>{
         </>
     )
 }
-export default MoviesDetails;
+export default MoviesEdit;
