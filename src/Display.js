@@ -34,7 +34,8 @@ const Display=()=>{
             if(`search${searchText}page${page+1}` in localStorage) {}
             else fetchData(page+1);
             if(`search${searchText}page${page+2}` in localStorage) {}
-            else fetchData(page+2);   
+            else fetchData(page+2);
+   
 
         },500)
         return ()=>{
@@ -48,6 +49,7 @@ const Display=()=>{
         if(searchText==='') setSearchText('avengers');
         setPage(1);
     }
+    
     const filterYearHandler=(year)=>{
         setFilterYear(year);
         if(year>0) setFilter(true);

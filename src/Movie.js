@@ -9,23 +9,6 @@ const Movie=(props)=>{
         setLike(!like);
         
     }
-    useEffect(()=>{
-        if(like){
-            let likedMovies=[];
-            if('likedMovies' in localStorage) likedMovies=JSON.parse(localStorage.getItem('likedMovies'));
-            const movie=likedMovies.filter((item)=>(item.id===props.id));
-            if(movie.length===0){
-                likedMovies.push({id:props.id,image:props.image,title:props.title});
-                localStorage.setItem('likedMovies',JSON.stringify(likedMovies));
-            }
-            else{
-                const newMovies=likedMovies.filter((item)=>(item.id!==props.id));
-                localStorage.setItem('likedMovies',JSON.stringify(newMovies));
-            }   
-          
-        }
-        
-        },[like])
     
     return(
         <div key={props.id} id={props.id} className="movies">
