@@ -12,6 +12,7 @@ const Display=()=>{
     const [searchText,setSearchText]=useState('avengers');
     const [filterYear,setFilterYear]=useState(0);
     const [filter,setFilter]=useState(false);
+    const [error,setError]=useState(false);
 
     useEffect( ()=>{
 
@@ -22,9 +23,17 @@ const Display=()=>{
                 const request = await fetch(url);
                 const data = await request.json();
                 
-                const searchMovies = data.Search;
-                localStorage.setItem(`search${searchText}page${index}`,JSON.stringify(searchMovies));
-                if(page===index) setMovies(searchMovies);
+                if(data.Error) {
+                    setError(true);
+                    setMovies([]);
+                }
+                else{
+                    setError(false);
+                    const searchMovies = data.Search;
+                    localStorage.setItem(`search${searchText}page${index}`,JSON.stringify(searchMovies));
+                    if(page===index) setMovies(searchMovies);
+                }
+                
             }
             if(`search${searchText}page${page}` in localStorage) {
                 setMovies(JSON.parse(localStorage.getItem(`search${searchText}page${page}`)));
@@ -36,7 +45,6 @@ const Display=()=>{
             if(`search${searchText}page${page+2}` in localStorage) {}
             else fetchData(page+2);
    
-
         },500)
         return ()=>{
             clearTimeout(timer);
@@ -97,8 +105,9 @@ const Display=()=>{
             <Filter year={filterYearHandler}/>
             {<Likes />}
         </div>
-        {!filter &&  <DisplayMovies />}
-        {filter && <ApplyFilter />}
+        {!filter && movies.length!==0 && <DisplayMovies />}
+        {filter && movies.length!==0 &&<ApplyFilter />}
+        {movies.length===0 && <h2>No Movies Found</h2>}
         <PrevNextPage setPage={setPageHandler} page={page}/>
         
     </>

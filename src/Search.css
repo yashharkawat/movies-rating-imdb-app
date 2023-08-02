@@ -15,6 +15,9 @@
 .search_button{
     cursor: pointer;
 }
+.nav_bar svg{
+    cursor: pointer;
+}
 .search_filter{
     padding:5px 10px;
     border-radius: 5px;
