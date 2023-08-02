@@ -15,3 +15,8 @@
 .search_button{
     cursor: pointer;
 }
+.search_filter{
+    padding:5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}

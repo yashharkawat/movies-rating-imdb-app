@@ -10,8 +10,8 @@ const Filter=(props)=>{
     }
     return (
         <div>
-            <input type='number' placeholder='filter by year' onChange={changeHandler}/>
-            <button onClick={clickHandler}>Apply Filter</button>
+            <input className='search_filter' type='number' placeholder='filter by year' onChange={changeHandler}/>
+            <button className='button' onClick={clickHandler}>Apply Filter</button>
         </div>
     );
 }

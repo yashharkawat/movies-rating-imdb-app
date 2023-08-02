@@ -47,18 +47,16 @@ const MoviesEdit=()=>{
     }
 
     return(
-        <>
+        <div className='edit'>
             <div>
                 <img src={movieDescription.image}/><br /><br/>
                 <input type='text' className='search' onChange={changeHandler} placeholder="change title" value={inputValue}/> 
-                <button onClick={clickHandler}>Apply changes</button>
+                <button onClick={clickHandler} className="button">Apply changes</button>
             </div>
             <br />
-            <Link to='/'>
-                Go back to movies
-            </Link>
+            <Link to='/'><button className='button'>Home</button></Link>
             
-        </>
+        </div>
     )
 }
 export default MoviesEdit;

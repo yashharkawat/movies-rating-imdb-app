@@ -38,7 +38,7 @@ const LikesPage=()=>{
             <div className="container" >
                 {movies.map(item=><Movie id={item.imdbID} title={item.Title} image={item.Poster} liked={likeHandler} like={item.like}/>)}
             </div>
-            <Link to='/'>Back to Homepage</Link>
+            <Link to='/'><button className='button'>Home</button></Link>
         </div>
     );
 }

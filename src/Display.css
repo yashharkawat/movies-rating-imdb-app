@@ -55,7 +55,27 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-left: 40px;
+    margin-right: 40px;
+
 }
-.movie_like.like{
+.movie_like.like {
     background-color: red;
+}
+.edit{
+    margin-left: 50px;
+    margin-top: 50px;
+}
+.edit input{
+    margin-left: 0px;
+}
+.button{
+    background-color: #FF0000;
+    color:white;
+    font-weight: bold;
+    border: none;
+    
+    border-radius: 5px;
+    padding:5px 8px;
+    cursor: pointer;
 }
