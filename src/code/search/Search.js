@@ -11,7 +11,12 @@ const Search = (props) => {
   const clickHandler = () => {
     props.moviesSearch(searchText);
   };
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      // Do something when Enter key is pressed
+      props.moviesSearch(searchText);
+    }
+  };
   return (
     <div class="nav_bar">
       <h3>Movies</h3>
@@ -20,6 +25,7 @@ const Search = (props) => {
         type="text"
         placeholder="Search movies"
         onChange={changeHandler}
+        onKeyUp={handleKeyPress}
       />
       <svg
         class="search_button"

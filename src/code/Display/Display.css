@@ -1,89 +1,109 @@
-.container{
-    display: flex;
-    width:1200px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    
+.container {
+  display: flex;
+  width: 1200px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
-.movies{
-    width:180px;
-    height:290px;
-    display: flex;
-    flex-direction: column;
-    margin-right: 30px;
-    margin-left: 40px;
-    margin-bottom: 20px;
-    
+.movies {
+  width: 180px;
+  height: 290px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+  margin-left: 40px;
+  margin-bottom: 20px;
 }
-.movie_poster{
-    width: 180px;
-    height:230px;
+.movie_poster {
+  width: 180px;
+  height: 230px;
 }
-.movie_description{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.movie_description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.movie_like{
-    width:20px;
-    height: auto;
-    color:blue;
-    cursor: pointer;
+.movie_like {
+  width: 20px;
+  height: auto;
+  color: blue;
+  cursor: pointer;
 }
-.movie_name{
-    margin-top: 5px;
-    margin-bottom: 15px;
+.movie_name {
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
-@media only screen and (min-width:1200px) {
-    .container{
-        width:100%;
-    }
+@media only screen and (min-width: 1200px) {
+  .container {
+    width: 100%;
+  }
 }
 
-.previous, .next{
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+.previous,
+.next {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
-.previous img, .next img{
-    width:50px;
-    height: 50px;
-    
+.previous img,
+.next img {
+  width: 50px;
+  height: 50px;
 }
-.previous_next_page{
-    display: flex;
-    justify-content: space-between;
+.previous_next_page {
+  display: flex;
+  justify-content: space-between;
 }
-.filter_likes{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 40px;
-    margin-right: 40px;
-
+.filter_likes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 .movie_like.like {
-    background-color: red;
+  background-color: red;
 }
-.edit{
-    margin-left: 50px;
-    margin-top: 50px;
+.edit {
+  margin-left: 50px;
+  margin-top: 50px;
 }
-.edit input{
-    margin-left: 0px;
+.edit input {
+  margin-left: 0px;
 }
-.button{
-    background-color: #FF0000;
-    color:white;
+.button {
+  background-color: #ff0000;
+  color: white;
+  font-weight: bold;
+  border: none;
+
+  border-radius: 5px;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+.button.home {
+  margin-left: 40px;
+}
+.likes-button {
+    background-color: #ff0000;
+    color: white;
     font-weight: bold;
     border: none;
-    
+
     border-radius: 5px;
-    padding:5px 8px;
+    padding: 5px 8px;
     cursor: pointer;
-}
-.button.home{
-    margin-left: 40px;
+  }
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+    flex-direction: column;
+    margin: 0px;
+    margin-top: 20px;
+    align-items: center;
+  }
+  .likes-button {
+    margin-left: 0px;
+  }
 }

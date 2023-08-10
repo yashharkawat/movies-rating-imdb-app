@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Movie from "../Movie";
 import Search from "../search/Search";
-import Filter from "../Filter";
 import "./Display.css";
 import PrevNextPage from "../PrevNextPage";
 import Likes from "../Likes";
@@ -69,37 +68,6 @@ const Display = () => {
     setPage(1);
   };
 
-  const filterYearHandler = (year) => {
-    setFilterYear(year);
-    if (year > 0) setFilter(true);
-    else setFilter(false);
-  };
-  const ApplyFilter = () => {
-    const filterMovies = movies.filter((item) => {
-      return item.Year >= filterYear;
-    });
-    return (
-      <div className="container">
-        {filterMovies.map((item) => (
-          <Movie
-            image={item.Poster}
-            title={item.Title}
-            id={item.imdbID}
-            liked={likeHandler}
-            unlikeHandler={unlikeHandler}
-            like={
-              user.liked === undefined
-                ? false
-                : user.liked.includes(item.imdbID)
-                ? true
-                : false
-            }
-            imdbRating={item.imdbRating}
-          />
-        ))}
-      </div>
-    );
-  };
   const DisplayMovies = () => {
     return (
       <div className="container">
@@ -157,12 +125,8 @@ const Display = () => {
     <>
       <Search moviesSearch={moviesSearchHandler} page={page} />
 
-      <div className="filter_likes">
-        <Filter year={filterYearHandler} />
-        {<Likes />}
-      </div>
-      {!filter && movies.length !== 0 && <DisplayMovies />}
-      {filter && movies.length !== 0 && <ApplyFilter />}
+      <div className="filter_likes">{<Likes />}</div>
+      {movies.length !== 0 && <DisplayMovies />}
       {movies.length === 0 && <h2>No Movies Found</h2>}
       <PrevNextPage setPage={setPageHandler} page={page} />
     </>
