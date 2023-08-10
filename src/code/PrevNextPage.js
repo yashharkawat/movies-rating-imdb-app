@@ -1,5 +1,5 @@
-import prevImage from './previous.png';
-import nextImage from './next.png';
+import prevImage from '../images/previous.png';
+import nextImage from '../images/next.png';
 const PrevNextPage=(props)=>{
     const prevPageHandler=()=>{
         if(props.page>1) props.setPage(props.page-1);
