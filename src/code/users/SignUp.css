@@ -31,14 +31,15 @@
   
   .signup-button {
     padding: 10px 15px;
-    margin: 10px;
+    margin-top: 10px;
     background: #145CC6;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    width:269px;
+    width:95%;
+    max-width: 320px;
   }
   
   .link {

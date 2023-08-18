@@ -32,3 +32,22 @@
     margin-left: 20px;
     cursor: pointer;
   }
+  @media screen and (min-width:600px) {
+    .logout-button-mobile{
+        display: none;
+      }
+  }
+  
+  @media screen and (max-width:600px) {
+    .movies-heading{
+        display: none;
+    }
+    .search{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .logout-button{
+        display: none;
+    }
+    
+  }

@@ -96,6 +96,9 @@
     cursor: pointer;
   }
 @media only screen and (max-width: 600px) {
+  body{
+    padding:30px;
+  }
   .container {
     width: 100%;
     flex-direction: column;
@@ -103,8 +106,27 @@
     margin-top: 20px;
     align-items: center;
   }
-  .likes-button {
-    margin-left: 0px;
+  
+  .like-logout{
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    
+}
+.filter_likes{
+  margin-left:0px;
+  margin-right: 0px;
+  display: block;
+  
+}
+}
+@media only screen and (min-width: 1200px) {
+  .container {
+    width: 100%;
+    justify-content: space-evenly;
+  }
+  .likes-button{
+    margin-left: 20px;
   }
 }
 .imdb-rating{

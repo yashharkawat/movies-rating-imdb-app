@@ -34,7 +34,7 @@ const Search = (props) => {
   };
   return (
     <div class="nav_bar">
-      <h3>Movies</h3>
+      <h3 className="movies-heading">Movies</h3>
       <input
         class="search"
         type="text"
