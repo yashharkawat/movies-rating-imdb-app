@@ -1,4 +1,7 @@
 body{
     background-color: rgb( 26,26,26 );
     color: #fff;
+    padding: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
 }

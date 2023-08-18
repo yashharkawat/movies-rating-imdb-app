@@ -8,18 +8,16 @@ import { collection, updateDoc, doc } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../../store/index";
 import { db } from "../../config/firebase";
-import { useNavigate } from "react-router-dom";
 
 const Display = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [searchText, setSearchText] = useState("avengers");
-  const [filterYear, setFilterYear] = useState(0);
-  const [filter, setFilter] = useState(false);
   const [error, setError] = useState(false);
   const user = useSelector((state) => state);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const [loading,setLoading]=useState(false);
 
   useEffect(() => {
     async function getRating(id) {
@@ -32,6 +30,7 @@ const Display = () => {
       return data;
     }
     async function fetchData() {
+      setLoading(true);
       const data_request = "https://www.omdbapi.com/?apikey=f2261eb2&";
       const url = `${data_request}s=${searchText}&page=${page}`;
       const request = await fetch(url);
@@ -41,9 +40,6 @@ const Display = () => {
         setError(true);
         setMovies([]);
       } else {
-        //const imdbRating=await getRating(id);
-        //console.log(imdbRating);
-        const searchMovies = data.Search;
         const ratingsPromises = data.Search.map(async (movie) => {
           const rating = await getRating(movie.imdbID);
           return { ...movie, imdbRating: rating.imdbRating };
@@ -52,6 +48,8 @@ const Display = () => {
         const ratings = await Promise.all(ratingsPromises);
         //console.log(ratings);
         setMovies(ratings);
+
+        setLoading(false);
       }
     }
     try {
@@ -121,11 +119,12 @@ const Display = () => {
   const setPageHandler = (newPage) => {
     setPage(newPage);
   };
+
+  if(loading) return <h3>Loading....</h3>
   return (
     <>
       <Search moviesSearch={moviesSearchHandler} page={page} />
-
-      <div className="filter_likes">{<Likes />}</div>
+      {isLoggedIn && <div className="filter_likes ">{<Likes />}</div>}
       {movies.length !== 0 && <DisplayMovies />}
       {movies.length === 0 && <h2>No Movies Found</h2>}
       <PrevNextPage setPage={setPageHandler} page={page} />

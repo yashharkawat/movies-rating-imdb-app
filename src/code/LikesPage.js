@@ -62,7 +62,6 @@ const LikesPage = () => {
     dispatch(actions.changeCurrentUserLiked(newLikedMovies));
     ///console.log(user);
     const newUser = { ...user, liked: newLikedMovies };
-    window.location.reload();
     await updateDoc(userRef, newUser);
     
   };
@@ -77,13 +76,14 @@ const LikesPage = () => {
             image={item.Poster}
             liked={likeHandler}
             unlikeHandler={unlikeHandler}
-            like={like}
+            like={true}
             imdbRating={item.imdbRating}
+            likesPage={true}
           />
         ))}
       </div>
       <Link to="/">
-        <button className="button home">Home</button>
+        <button className="button home logout-button">Home</button>
       </Link>
     </div>
   );

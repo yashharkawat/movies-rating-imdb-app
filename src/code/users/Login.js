@@ -45,15 +45,12 @@ const Login = () => {
         values.password
       );
       const confirmUser = user.user;
-      //console.log(confirmUser);
       getUser(confirmUser.email);
       navigate("/");
       //console.log(selector);
     } catch (err) {
       //setSignedIn(false);
       setError(err);
-      //console.log('hello');
-      //console.log(err);
     }
   };
   return (

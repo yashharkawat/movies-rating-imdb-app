@@ -107,3 +107,11 @@
     margin-left: 0px;
   }
 }
+.imdb-rating{
+  display: flex;
+  align-items: center;
+
+}
+.imdb-rating-text{
+  margin-left: 10px;
+}

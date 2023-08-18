@@ -4,17 +4,21 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // Defaults to localStorage for web
 
 
-const initialState={name:'',email:'',id:'',liked:[]};
+const initialState={name:'',email:'',id:'',liked:[],isLoggedIn:false};
 
 const userSlice=createSlice({
     name:'currentUser',
     initialState,
     reducers:{
         changeCurrentUser(state,action){
+            if(action.payload==='reset'){
+                return initialState;
+            }
             state.email=action.payload.email;
             state.name=action.payload.name;
             state.id=action.payload.id;
             state.liked=action.payload.liked;
+            state.isLoggedIn=true;
         },
         changeCurrentUserEmail(state,action){
             state.email=action.payload;
@@ -27,7 +31,11 @@ const userSlice=createSlice({
         },
         changeCurrentUserLiked(state,action){
             state.liked=action.payload;
+        },
+        changeCurrentUserLoggedIn(state,action){
+            state.isLoggedIn=action.payload;
         }
+        
     }
 })
 const persistConfig = {

@@ -32,6 +32,7 @@ const SignUp = () => {
         email: user.email,
         name: user.name,
         id: data.id,
+        liked:[],
       })
     );
   };
@@ -39,14 +40,9 @@ const SignUp = () => {
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
       addUser({ email: values.email, name: values.name, liked: [] });
-      //dispatch(actions.changeCurrentUser({name:'',id:'',email:'',liked:[]}));
-      //console.log(curUser);
       navigate("/");
-      // console.log(auth?.currentUser);
     } catch (err) {
-      //setSignedIn(false);
       setError(err);
-      //console.log('hello');
       console.log(err);
     }
   };

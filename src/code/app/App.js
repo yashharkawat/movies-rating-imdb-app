@@ -2,13 +2,13 @@ import {
   createBrowserRouter,RouterProvider
 } from "react-router-dom";
 import React from 'react';
-import MoviesEdit from '../MoviesEdit';
 import './App.css'
 import LikesPage from "../LikesPage";
 import Display from "../Display/Display";
 import Login from "../users/Login";
 import SignUp from "../users/SignUp";
 import ProfilePage from "../Profile/ProfilePage";
+import DescriptionPage from "../Description/Description";
 const router=createBrowserRouter([
 {
   path:'/',
@@ -23,16 +23,16 @@ const router=createBrowserRouter([
   element:<SignUp />,
 },
 {
-  path:'/:id',
-  element:<MoviesEdit />
-},
-{
   path:'/likes-page',
   element:<LikesPage />
 },
 {
   path:'/profile',
   element:<ProfilePage />
+},
+{
+  path:'/description/:id',
+  element:<DescriptionPage />
 }
 ])
 
