@@ -3,10 +3,12 @@
     width:200px;
     justify-content: space-between;
 }
-.rating{
-    width:200px;
+.imdb_rating{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
 }
 .name{
     display: flex;
@@ -44,5 +46,11 @@
     }
     .details{
         width: 100%;
+        margin-left: 0px;
+        margin-top: 20px;
+        height: auto;
+    }
+    .name{
+        flex-direction: column;
     }
 }

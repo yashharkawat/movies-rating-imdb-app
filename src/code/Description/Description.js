@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const DescriptionPage = () => {
   const [movieData, setMovieData] = useState({});
-  const isLoggedIn=useSelector(state=>state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const params = useParams();
   useEffect(() => {
     description(params.id);
@@ -31,23 +31,25 @@ const DescriptionPage = () => {
           <div>{movieData.Rated}</div>
           <div>{movieData.Runtime}</div>
         </div>
-      </div>
-      <div className="rating">
         <div className="imdb_rating">
           <div>IMDB Rating</div>
           <div>{movieData.imdbRating}</div>
         </div>
-        
       </div>
+
       <div className="description">
         <div className="image">
           <img src={movieData.Poster} alt="Movie Poster" />
         </div>
         <div className="details">
           <div>{movieData.Plot}</div>
+          <br />
           <div className="genre">Genre: {movieData.Genre}</div>
+          <br />
           <div className="awards">Awards: {movieData.Awards}</div>
+          <br />
           <div className="actors">Actors: {movieData.Actors}</div>
+          <br />
           <div className="writer">Writer: {movieData.Writer}</div>
         </div>
       </div>
