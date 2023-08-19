@@ -12,58 +12,55 @@ import { db } from "../../config/firebase";
 const Display = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
-  const [searchText, setSearchText] = useState("avengers");
+  const searchText = useSelector((state) => state.searchText);
   const [error, setError] = useState(false);
   const user = useSelector((state) => state);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  const [loading,setLoading]=useState(false);
+  const [loading, setLoading] = useState(false);
+  async function getRating(id) {
+    const data_request = "https://www.omdbapi.com/?apikey=f2261eb2&";
+    const url = `${data_request}i=${id}`;
+    const request = await fetch(url);
+    const data = await request.json();
+    //console.log(data);
 
+    return data;
+  }
+  async function fetchData() {
+    setLoading(true);
+    const data_request = "https://www.omdbapi.com/?apikey=f2261eb2&";
+    const url = `${data_request}s=${searchText}&page=${page}`;
+    const request = await fetch(url);
+    const data = await request.json();
+    if (data.Error) {
+      setError(true);
+      setMovies([]);
+    } else {
+      setError(false);
+      const ratingsPromises = data.Search.map(async (movie) => {
+        const rating = await getRating(movie.imdbID);
+        return { ...movie, imdbRating: rating.imdbRating };
+      });
+
+      const ratings = await Promise.all(ratingsPromises);
+      //console.log(ratings);
+      setMovies(ratings);
+    }
+    setLoading(false);
+  }
   useEffect(() => {
-    async function getRating(id) {
-      const data_request = "https://www.omdbapi.com/?apikey=f2261eb2&";
-      const url = `${data_request}i=${id}`;
-      const request = await fetch(url);
-      const data = await request.json();
-      //console.log(data);
-
-      return data;
-    }
-    async function fetchData() {
-      setLoading(true);
-      const data_request = "https://www.omdbapi.com/?apikey=f2261eb2&";
-      const url = `${data_request}s=${searchText}&page=${page}`;
-      const request = await fetch(url);
-      const data = await request.json();
-
-      if (data.Error) {
-        setError(true);
-        setMovies([]);
-      } else {
-        const ratingsPromises = data.Search.map(async (movie) => {
-          const rating = await getRating(movie.imdbID);
-          return { ...movie, imdbRating: rating.imdbRating };
-        });
-
-        const ratings = await Promise.all(ratingsPromises);
-        //console.log(ratings);
-        setMovies(ratings);
-
-        setLoading(false);
-      }
-    }
     try {
       fetchData();
     } catch (err) {
       setError(true);
       console.log(err);
     }
-  }, [searchText, page]);
+  }, [page]);
 
   const moviesSearchHandler = (text) => {
-    setSearchText(text);
-    if (searchText === "") setSearchText("avengers");
     setPage(1);
+    fetchData();
   };
 
   const DisplayMovies = () => {
@@ -120,13 +117,19 @@ const Display = () => {
     setPage(newPage);
   };
 
-  if(loading) return <h3>Loading....</h3>
+  if (loading) return <h3>Loading....</h3>;
   return (
     <>
-      <Search moviesSearch={moviesSearchHandler} page={page} />
+      <Search
+        moviesSearch={moviesSearchHandler}
+        page={page}
+        text={searchText}
+      />
       {isLoggedIn && <div className="filter_likes ">{<Likes />}</div>}
-      {movies.length !== 0 && <DisplayMovies />}
-      {movies.length === 0 && <h2>No Movies Found</h2>}
+      {!error && <DisplayMovies />}
+      {error && (
+        <h2 style={{ color: "red", textAlign: "center" }}>No Movies Found</h2>
+      )}
       <PrevNextPage setPage={setPageHandler} page={page} />
     </>
   );

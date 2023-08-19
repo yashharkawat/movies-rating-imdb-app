@@ -7,13 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebase";
 import { actions } from "../../store/index";
+
 const Search = (props) => {
-  const [searchText, setSearchText] = useState("");
+  const searchText=useSelector(state=>state.searchText);
   const dispatch=useDispatch();
   const navigate=useNavigate();
   const isLoggedIn=useSelector(state=>state.isLoggedIn);
   const changeHandler = (e) => {
-    setSearchText(e.target.value);
+    dispatch(actions.setSearchText(e.target.value));
   };
   const clickHandler = () => {
     props.moviesSearch(searchText);
@@ -41,6 +42,7 @@ const Search = (props) => {
         placeholder="Search movies"
         onChange={changeHandler}
         onKeyUp={handleKeyPress}
+        value={searchText}
       />
       <svg
         class="search_button"
