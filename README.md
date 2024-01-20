@@ -1,3 +1,5 @@
+A website where you can see all movies, search for movies, see their IMDB Rating and also like movies to watch later
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
