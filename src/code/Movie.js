@@ -6,9 +6,10 @@ const Movie = (props) => {
   const navigate = useNavigate();
   const [like, setLike] = useState(props.like);
   const isLoggedIn=useSelector(state=>state.isLoggedIn);
-  const clickHandler = () => {
+  const clickHandler = (e) => {
     if (!isLoggedIn) {
-      prompt("Login First to Like movies");
+      e.preventDefault?.();
+      navigate("/login", { state: { from: "like", returnTo: "/movies" } });
       return;
     }
     props.liked(props.id);
@@ -22,7 +23,7 @@ const Movie = (props) => {
   return (
     <div key={props.id} id={props.id} className="movies">
       <Link to={`/description/${props.id}`}>
-        <img className="movie_poster" src={props.image} />
+        <img className="movie_poster" src={props.image} alt={props.title || "Movie poster"} />
       </Link>
       <div className="movie_description">
         <div className="imdb-rating">
@@ -30,7 +31,7 @@ const Movie = (props) => {
             width="20"
             height="20"
             xmlns="http://www.w3.org/2000/svg"
-            class="ipc-icon ipc-icon--star-inline"
+            className="ipc-icon ipc-icon--star-inline"
             viewBox="0 0 24 24"
             fill="currentColor"
             role="presentation"

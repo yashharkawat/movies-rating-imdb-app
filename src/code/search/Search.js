@@ -34,10 +34,12 @@ const Search = (props) => {
     }
   };
   return (
-    <div class="nav_bar">
-      <h3 className="movies-heading">Movies</h3>
+    <div className="nav_bar">
+      <Link to="/movies" className="movies-heading-link">
+        <h3 className="movies-heading">Movies</h3>
+      </Link>
       <input
-        class="search"
+        className="search"
         type="text"
         placeholder="Search movies"
         onChange={changeHandler}
@@ -45,7 +47,7 @@ const Search = (props) => {
         value={searchText}
       />
       <svg
-        class="search_button"
+        className="search_button"
         onClick={clickHandler}
         xmlns="http://www.w3.org/2000/svg"
         width="40"

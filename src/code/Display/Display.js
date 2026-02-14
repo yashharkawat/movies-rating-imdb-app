@@ -117,7 +117,20 @@ const Display = () => {
     setPage(newPage);
   };
 
-  if (loading) return <h3>Loading....</h3>;
+  if (loading)
+    return (
+      <>
+        <Search
+          moviesSearch={moviesSearchHandler}
+          page={page}
+          text={searchText}
+        />
+        <div className="display-loading">
+          <div className="display-loading-spinner" />
+          <p className="display-loading-text">Loading movies…</p>
+        </div>
+      </>
+    );
   return (
     <>
       <Search
@@ -125,10 +138,13 @@ const Display = () => {
         page={page}
         text={searchText}
       />
-      {isLoggedIn && <div className="filter_likes ">{<Likes />}</div>}
+      {isLoggedIn && <div className="filter_likes">{<Likes />}</div>}
       {!error && <DisplayMovies />}
       {error && (
-        <h2 style={{ color: "red", textAlign: "center" }}>No Movies Found</h2>
+        <div className="display-error">
+          <h2>No movies found</h2>
+          <p>Try a different search term.</p>
+        </div>
       )}
       <PrevNextPage setPage={setPageHandler} page={page} />
     </>

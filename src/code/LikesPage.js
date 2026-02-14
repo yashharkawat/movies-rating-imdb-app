@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../store/index";
 import { db } from "../config/firebase";
-import { updateDoc,doc } from "firebase/firestore";
+import { updateDoc, doc } from "firebase/firestore";
+import "./Display/Display.css";
+import "./LikesPage.css";
 const LikesPage = () => {
   const [movies, setMovies] = useState([]);
   const likedMoviesId = useSelector((state) => state.liked);
@@ -66,11 +68,18 @@ const LikesPage = () => {
     
   };
   return (
-    <div>
-      <h2 style={{ textAlign: "center" }}>Liked Movies</h2>
+    <div className="likes-page">
+      <header className="likes-page-header">
+        <Link to="/movies" className="likes-page-home-link">← Back to search</Link>
+        <h1 className="likes-page-title">Liked Movies</h1>
+      </header>
+      {movies.length === 0 && !loading && (
+        <p className="likes-page-empty">You haven't liked any movies yet. Search and like some from the home page.</p>
+      )}
       <div className="container">
         {movies.map((item) => (
           <Movie
+            key={item.imdbID}
             id={item.imdbID}
             title={item.Title}
             image={item.Poster}
@@ -82,9 +91,6 @@ const LikesPage = () => {
           />
         ))}
       </div>
-      <Link to="/">
-        <button className="button home logout-button">Home</button>
-      </Link>
     </div>
   );
 };

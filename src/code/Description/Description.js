@@ -21,7 +21,7 @@ const DescriptionPage = () => {
   };
 
   return (
-    <div>
+    <div className="description-page">
       <div className="name">
         <div className="title">
           <h2>{movieData.Title}</h2>
@@ -43,14 +43,10 @@ const DescriptionPage = () => {
         </div>
         <div className="details">
           <div>{movieData.Plot}</div>
-          <br />
-          <div className="genre">Genre: {movieData.Genre}</div>
-          <br />
-          <div className="awards">Awards: {movieData.Awards}</div>
-          <br />
-          <div className="actors">Actors: {movieData.Actors}</div>
-          <br />
-          <div className="writer">Writer: {movieData.Writer}</div>
+          <div className="genre"><strong>Genre:</strong> {movieData.Genre}</div>
+          <div className="awards"><strong>Awards:</strong> {movieData.Awards}</div>
+          <div className="actors"><strong>Actors:</strong> {movieData.Actors}</div>
+          <div className="writer"><strong>Writer:</strong> {movieData.Writer}</div>
         </div>
       </div>
     </div>

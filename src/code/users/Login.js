@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Login.css";
 import { auth } from "../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -19,7 +19,9 @@ const Login = () => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state);
   const navigate = useNavigate();
+  const location = useLocation();
   const [error, setError] = useState("");
+  const fromLike = location.state?.from === "like";
 
   const getUser = async (email) => {
     try {
@@ -46,7 +48,7 @@ const Login = () => {
       );
       const confirmUser = user.user;
       getUser(confirmUser.email);
-      navigate("/");
+      navigate("/movies");
       //console.log(selector);
     } catch (err) {
       //setSignedIn(false);
@@ -56,6 +58,9 @@ const Login = () => {
   return (
     <div className="login-container">
       <h3 className="login-title">Sign In</h3>
+      {fromLike && (
+        <p className="login-hint" role="status">Sign in to like and save your favorite movies.</p>
+      )}
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={SignInSchema}

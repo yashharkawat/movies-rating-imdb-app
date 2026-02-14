@@ -40,7 +40,7 @@ const SignUp = () => {
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
       addUser({ email: values.email, name: values.name, liked: [] });
-      navigate("/");
+      navigate("/movies");
     } catch (err) {
       setError(err);
       console.log(err);

@@ -1,56 +1,172 @@
-.time{
-    display: flex;
-    width:200px;
-    justify-content: space-between;
+.description-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  padding-left: calc(16px + var(--safe-left));
+  padding-right: calc(16px + var(--safe-right));
+  padding-bottom: calc(40px + var(--safe-bottom));
+  min-width: 0;
 }
-.imdb_rating{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 10px;
+
+.description .name {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
 }
-.name{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
+
+.description .title h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.3;
 }
-.description{
-    display: flex;
-    margin-top: 30px;
+
+.time {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
 }
-.image img{
-    width:300px;
-    height:400px;
-    
+
+.time > div {
+  padding: 6px 10px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
 }
-.details{
-    margin-left: 20px;
-    margin-right: 50px;
-    width:500px;
-    height:400px;
-    
-    font-size: larger;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+
+.imdb_rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, rgba(232, 185, 35, 0.2), rgba(232, 185, 35, 0.05));
+  border: 1px solid rgba(232, 185, 35, 0.3);
+  border-radius: var(--radius-md);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1rem;
 }
-@media screen and (max-width:600px) {
-    .description{
-        flex-direction: column;
-        width: 100%;
-    }
-    .image img{
-        width:100%;
-    }
-    .details{
-        width: 100%;
-        margin-left: 0px;
-        margin-top: 20px;
-        height: auto;
-    }
-    .name{
-        flex-direction: column;
-    }
+
+.imdb_rating > div:first-child {
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 0;
+  align-items: center;
+}
+
+.description .image {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 280px;
+}
+
+.description .image img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.details {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.details > div:first-child {
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.genre,
+.awards,
+.actors,
+.writer {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.genre strong,
+.awards strong,
+.actors strong,
+.writer strong {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+/* Tablet: side-by-side layout */
+@media screen and (min-width: 640px) {
+  .description-page {
+    padding: 28px 20px 48px;
+    padding-left: calc(20px + var(--safe-left));
+    padding-right: calc(20px + var(--safe-right));
+  }
+  .description .title h2 {
+    font-size: 1.5rem;
+  }
+  .time {
+    font-size: 0.9rem;
+  }
+  .description {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 28px;
+  }
+  .description .image {
+    max-width: 260px;
+  }
+  .details {
+    font-size: 1rem;
+  }
+  .details > div:first-child {
+    font-size: 1.05rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .description-page {
+    padding: 32px 24px 48px;
+    padding-left: calc(24px + var(--safe-left));
+    padding-right: calc(24px + var(--safe-right));
+    padding-bottom: calc(48px + var(--safe-bottom));
+  }
+  .description .title h2 {
+    font-size: 1.75rem;
+  }
+  .description .image img {
+    width: 280px;
+    max-width: none;
+  }
+  .description .image {
+    max-width: none;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .description {
+    gap: 32px;
+  }
 }
